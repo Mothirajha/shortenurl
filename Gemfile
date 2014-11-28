@@ -1,18 +1,12 @@
 source 'http://rubygems.org'
 
-# Database connectivity
-gem 'pg'
-
-# Sinatra framework
+ruby '2.1.4'
 gem 'sinatra'
 gem 'sinatra-contrib'
-
+gem 'mongoid'
 # Web server
-gem 'unicorn'
+# gem 'unicorn'
+gem 'pry'
 
-gem 'activesupport'
-gem 'activerecord'
-
-gem 'rake'
 # For autoreload of application
 gem 'shotgun'

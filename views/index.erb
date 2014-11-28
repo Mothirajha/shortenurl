@@ -1,0 +1,20 @@
+<h1> Shortern Url </h1>
+
+
+
+<% if @url.any? %>
+  <table>
+    <th> Long Url </th>
+    <th> Short Url </th>
+    <th> No.of Hits </th>
+    <tbody>
+    <% @url.each do |url|%>
+    <tr>
+      <td><%= url.long_url %>  </td>
+      <td><%= url.short_url %></td>
+      <td><%= url.count %> </td>
+    </tr>
+    <%end%>
+    </tbody>
+  </table>
+<%end%>

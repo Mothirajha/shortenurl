@@ -1,0 +1,24 @@
+<h1> Shortern Url </h1>
+<form accept-charset="UTF-8" action="/" method="post">
+  <input id="long_url" name="long_url" placeholder="our url" type="text">
+  <input name="commit" type="submit" value="submit"> 
+</form>
+
+
+<% unless @url.blank? %>
+  <table>
+    <th> Long Url </th>
+    <th> Short Url </th>
+    <th> No.of Hits </th>
+    <tbody>
+    <% @url.each do |url|%>
+    <tr>
+      <td><%= url.long_url %>  </td>
+      <td><%= url.short_url %></td>
+      <td><%= url.count %> </td>
+    </tr>
+    <%end%>
+    </tbody>
+  </table>
+<%end%>
+
