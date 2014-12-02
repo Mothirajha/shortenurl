@@ -12,7 +12,7 @@ class Url
 
   field :long_url, type: String
   field :short_url, type: String
-  field :count, type: Integer
+  field :count, type: Integer, default: 0
   before_save :create_shorten_url
 
   def create_shorten_url
@@ -26,16 +26,36 @@ end
 
 get '/' do 
   @url = Url.all
+  binding.pry
   erb :home
 end
 
 post '/' do
   if params[:long_url]
-    url = Url.new
-    url.long_url = params[:long_url]
-    url.create_shorten_url
-    url.save
+    long_url = params[:long_url].strip
+    binding.pry
+    if Url.where(long_url: long_url)
+      redirect '/'
+    else
+      url = Url.new
+      url.long_url = long_url 
+      url.create_shorten_url
+      url.save
+    end
   end
   @url = Url.all
   erb :home
+end
+
+get '/:unique_key' do
+  if params[:unique_key]
+    url = Url.find_by(short_url: params[:unique_key])
+    if url
+      url.count = url.count + 1
+      url.save
+      redirect url.long_url
+    else
+      redirect '/'
+    end
+  end
 end

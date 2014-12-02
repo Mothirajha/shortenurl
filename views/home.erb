@@ -14,7 +14,7 @@
     <% @url.each do |url|%>
     <tr>
       <td><%= url.long_url %>  </td>
-      <td><%= url.short_url %></td>
+      <td><%= "http://localhost:4567/#{url.short_url}" %></td>
       <td><%= url.count %> </td>
     </tr>
     <%end%>
