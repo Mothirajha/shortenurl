@@ -24,21 +24,19 @@ class Url
   end
 end
 
-get '/' do 
+get '/' do
   @url = Url.all
-  binding.pry
   erb :home
 end
 
 post '/' do
   if params[:long_url]
     long_url = params[:long_url].strip
-    binding.pry
-    if Url.where(long_url: long_url)
+    if Url.where(long_url: long_url).count > 0
       redirect '/'
     else
       url = Url.new
-      url.long_url = long_url 
+      url.long_url = long_url
       url.create_shorten_url
       url.save
     end
